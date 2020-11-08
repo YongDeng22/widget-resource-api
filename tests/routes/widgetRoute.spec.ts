@@ -4,7 +4,6 @@ import bodyParser from 'body-parser';
 
 import { widgetRoutes } from '../../src/routes/widgetRoute';
 import { widgetServices } from '../../src/services/widget.service';
-import { doesNotMatch } from 'assert';
 
 const fetchWidgetMock = jest.fn();
 widgetServices.fetchWidget = fetchWidgetMock;
@@ -31,6 +30,6 @@ describe('widget route', () => {
 
         const result = await request(app).get('/widget?id=1');
         expect(result.status).toEqual(200);
-        expect(result).toEqual(fakeServiceResult());
+        expect(result.text).toEqual(JSON.stringify(fakeServiceResult()));
     })
 })
